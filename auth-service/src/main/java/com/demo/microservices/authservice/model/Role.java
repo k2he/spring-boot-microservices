@@ -1,4 +1,4 @@
-package com.demo.microservices.servicelibs.model.security;
+package com.demo.microservices.authservice.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

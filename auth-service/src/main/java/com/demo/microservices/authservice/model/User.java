@@ -1,6 +1,5 @@
-package com.demo.microservices.servicelibs.model.security;
+package com.demo.microservices.authservice.model;
 
-import java.security.AuthProvider;
 import java.util.List;
 
 import javax.persistence.Column;

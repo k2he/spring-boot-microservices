@@ -1,4 +1,4 @@
-package com.demo.microservices.servicelibs.model.security;
+package com.demo.microservices.authservice.model;
 
 import java.util.Collection;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
