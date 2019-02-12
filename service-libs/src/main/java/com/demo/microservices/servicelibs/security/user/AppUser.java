@@ -31,6 +31,5 @@ public class AppUser {
 	
 	private Boolean active;
 	
-	@Enumerated(EnumType.STRING)
-	private List<RoleName> roles;
+	private List<String> roles;
 }

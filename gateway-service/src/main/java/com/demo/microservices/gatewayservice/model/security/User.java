@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;

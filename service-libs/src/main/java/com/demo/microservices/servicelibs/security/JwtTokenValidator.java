@@ -1,4 +1,4 @@
-package com.demo.microservices.gatewayservice.security;
+package com.demo.microservices.servicelibs.security;
 
 import java.security.PublicKey;
 import java.util.List;
@@ -8,12 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.demo.microservices.servicelibs.security.JwtConstants;
-import com.demo.microservices.servicelibs.security.JwtPublicKey;
-import com.demo.microservices.servicelibs.security.user.AppUser;
 import com.demo.microservices.servicelibs.security.user.AppUserPrincipal;
 import com.demo.microservices.servicelibs.util.JwtUtil;
 
@@ -27,7 +23,6 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-@Component
 @RequiredArgsConstructor
 public class JwtTokenValidator {
 	private static final Logger logger = LoggerFactory.getLogger(JwtTokenValidator.class);
@@ -36,9 +31,6 @@ public class JwtTokenValidator {
 	
 	@NonNull
 	private RestTemplate restTemplate;
-    
-    private static final String CLAIM_KEY_AUTHORITIES = "authorities";
-    private static final String CLAIM_KEY_USERNAME = "username";
     
     public void getJwtPublicKey() {
     	// Get JWT public signing key and store locally. 
@@ -63,12 +55,8 @@ public class JwtTokenValidator {
     	List<String> roles = (List<String>)claims.getBody().get(JwtConstants.CLAIM_KEY_AUTHORITIES);
     	List<GrantedAuthority> authorities = roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
-    	AppUserPrincipal principle = new AppUserPrincipal(userId, username, name, authorities);
-    	principle.setEmail(email);
-    	
-    	return principle;
+    	return new AppUserPrincipal(userId, username, name, email, authorities);
     }
-    
     
     public boolean validateToken(String token) {
     	try {

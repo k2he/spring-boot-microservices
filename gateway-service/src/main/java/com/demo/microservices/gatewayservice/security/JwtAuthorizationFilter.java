@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
+import com.demo.microservices.servicelibs.security.JwtConstants;
+import com.demo.microservices.servicelibs.security.JwtTokenValidator;
 import com.demo.microservices.servicelibs.security.user.AppUserPrincipal;
-
 
 
 public class JwtAuthorizationFilter extends GenericFilterBean {
 	
-	@Autowired
     private JwtTokenValidator jwtTokenProvider;
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
@@ -33,10 +32,9 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
 			if (jwtTokenProvider == null) {
 				ServletContext servletContext = request.getServletContext();
 				WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-				if (jwtTokenProvider == null) {
-					jwtTokenProvider = webApplicationContext.getBean(JwtTokenValidator.class);
-				} 
+				jwtTokenProvider = webApplicationContext.getBean(JwtTokenValidator.class);
 			}
+			
 			String token = getJwtFromRequest((HttpServletRequest)request);
 			if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
 				AppUserPrincipal userDetails = jwtTokenProvider.getUserDetailFromJWT(token);
@@ -52,8 +50,8 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
 	}
 
 	private String getJwtFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader(SecurityConstants.HEADER_STRING);
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(SecurityConstants.TOKEN_PREFIX)) {
+        String bearerToken = request.getHeader(JwtConstants.HEADER_STRING);
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtConstants.TOKEN_PREFIX)) {
             return bearerToken.substring(7, bearerToken.length());
         }
         return null;
