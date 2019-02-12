@@ -14,11 +14,11 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.demo.microservices.servicelibs.audit.UserDateAudit;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import com.demo.microservices.servicelibs.model.audit.UserDateAudit;
 
 @Entity
 @Table(name="contact_us", catalog= "my_database")

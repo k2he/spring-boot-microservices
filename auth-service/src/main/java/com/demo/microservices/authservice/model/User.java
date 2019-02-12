@@ -15,7 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.demo.microservices.servicelibs.model.audit.UserDateAudit;
+import com.demo.microservices.servicelibs.audit.UserDateAudit;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

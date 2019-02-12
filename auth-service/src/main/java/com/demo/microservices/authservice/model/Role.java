@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import com.demo.microservices.servicelibs.model.audit.UserDateAudit;
+import com.demo.microservices.servicelibs.audit.UserDateAudit;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -31,8 +31,6 @@ import com.demo.microservices.authservice.security.oauth2.OAuth2AuthenticationSu
         prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-
-	
 	@Autowired
 	private JwtAuthenticationEntryPoint authEntryPoint;
 	
@@ -75,6 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers(HttpMethod.POST, "/login/**").permitAll()
+            .antMatchers(HttpMethod.GET, "/public-key/**").permitAll()
             .anyRequest()
             .authenticated()
             .and()

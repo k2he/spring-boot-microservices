@@ -15,9 +15,11 @@ public class AppProperties {
 	@Setter
 	public static class Jwt {
 		private String tokenSecret;
-        private long tokenExpirationMsec;
-        
-        
+		private String publicKey;
+		private String privateKey;
+		private String publicKeyLocation;
+		private String privateKeyLocation;
+        private long tokenExpirationMsec;  
 	}
 	
 	@Getter

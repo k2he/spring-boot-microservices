@@ -1,4 +1,4 @@
-package com.demo.microservices.servicelibs.model;
+package com.demo.microservices.servicelibs.security;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

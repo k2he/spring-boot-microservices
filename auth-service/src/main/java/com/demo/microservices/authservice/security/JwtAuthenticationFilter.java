@@ -57,7 +57,7 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 			WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 			jwtTokenProvider = webApplicationContext.getBean(JwtTokenProvider.class);
 		}
-		String token = jwtTokenProvider.generateToken(authentication); 
+		String token = jwtTokenProvider.generateRSAToken(authentication); 
 		
 		JwtAuthenticationToken jwtToken = new JwtAuthenticationToken(token, (UserPrincipal)authentication.getPrincipal());
 		response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);

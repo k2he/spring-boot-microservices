@@ -2,12 +2,13 @@ package com.demo.microservices.projectservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 
 @SpringBootApplication
 @EnableEurekaClient
+@EnableCircuitBreaker      // Enable circuit breakers
 public class ProjectServiceApplication {
 
 	public static void main(String[] args) {

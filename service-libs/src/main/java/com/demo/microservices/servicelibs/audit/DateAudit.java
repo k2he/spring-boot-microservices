@@ -1,4 +1,4 @@
-package com.demo.microservices.servicelibs.model.audit;
+package com.demo.microservices.servicelibs.audit;
 
 import java.time.Instant;
 

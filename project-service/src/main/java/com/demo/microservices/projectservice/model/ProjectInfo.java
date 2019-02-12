@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.demo.microservices.servicelibs.model.audit.UserDateAudit;
+import com.demo.microservices.servicelibs.audit.UserDateAudit;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

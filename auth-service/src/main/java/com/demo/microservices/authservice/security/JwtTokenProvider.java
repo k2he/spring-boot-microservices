@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -18,13 +17,19 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class JwtTokenProvider {
 	private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
-	@Autowired
+	@NonNull
 	private AppProperties appProperties;
+	
+	@NonNull
+	private RSAKeys jwtKeys;
 
     private static final String CLAIM_KEY_AUTHORITIES = "authorities";
     private static final String CLAIM_KEY_USERNAME = "username";
@@ -70,5 +75,23 @@ public class JwtTokenProvider {
             logger.error("JWT claims string is empty.");
         }
         return false;
+    }
+    
+    public String generateRSAToken(Authentication authentication) {
+    	UserPrincipal userPrincipal = (UserPrincipal)authentication.getPrincipal();
+    	
+    	Date now = new Date();
+    	Date expiration = new Date(now.getTime() + appProperties.getJwt().getTokenExpirationMsec());
+    	
+    	Claims claims = Jwts.claims().setSubject(String.valueOf(userPrincipal.getId()));
+    	claims.put(CLAIM_KEY_USERNAME, userPrincipal.getUsername());
+    	claims.put(CLAIM_KEY_AUTHORITIES, userPrincipal.getAuthorities());
+	    
+    	return Jwts.builder()
+    			.setClaims(claims)
+    			.setIssuedAt(now)
+    			.setExpiration(expiration)
+    			.signWith(SignatureAlgorithm.RS256, jwtKeys.getPrivateKey())
+    			.compact();	
     }
 }
