@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.demo.microservices.gatewayservice.security.JwtAuthenticationEntryPoint;
 import com.demo.microservices.gatewayservice.security.JwtAuthorizationFilter;
-import com.demo.microservices.gatewayservice.security.JwtTokenProvider;
+import com.demo.microservices.gatewayservice.security.JwtTokenValidator;
 
 
 
@@ -47,11 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-//            .antMatchers(HttpMethod.POST, "/login/**").permitAll()
-//            .antMatchers(HttpMethod.GET, "/oauth2/authorize/**").permitAll()
-//            .antMatchers(HttpMethod.GET, "/auth/**").permitAll()
             .antMatchers("/auth/**").permitAll()
-//            .antMatchers(HttpMethod.GET, "/oauth2/authorize/**").permitAll()
             .anyRequest()
             .authenticated()
             .and()

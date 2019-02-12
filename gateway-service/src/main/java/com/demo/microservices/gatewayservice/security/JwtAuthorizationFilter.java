@@ -18,33 +18,29 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
+import com.demo.microservices.servicelibs.security.user.AppUserPrincipal;
+
 
 
 public class JwtAuthorizationFilter extends GenericFilterBean {
 	
 	@Autowired
-    private JwtTokenProvider jwtTokenProvider;
-	
-	private CustomUserDetailsService userDetailService;
+    private JwtTokenValidator jwtTokenProvider;
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 		try {
 			//Initialize jwtTokenProvider and userDetailService
-			if (jwtTokenProvider == null || userDetailService == null) {
+			if (jwtTokenProvider == null) {
 				ServletContext servletContext = request.getServletContext();
 				WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 				if (jwtTokenProvider == null) {
-					jwtTokenProvider = webApplicationContext.getBean(JwtTokenProvider.class);
+					jwtTokenProvider = webApplicationContext.getBean(JwtTokenValidator.class);
 				} 
-				if (userDetailService == null) {
-					userDetailService = webApplicationContext.getBean(CustomUserDetailsService.class);
-				}
 			}
 			String token = getJwtFromRequest((HttpServletRequest)request);
 			if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
-				Long userID = jwtTokenProvider.getUserIdFromJWT(token);
-				
-				UserDetails userDetails = userDetailService.loadUserById(userID);
+				AppUserPrincipal userDetails = jwtTokenProvider.getUserDetailFromJWT(token);
+
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}

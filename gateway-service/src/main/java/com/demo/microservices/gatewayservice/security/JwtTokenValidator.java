@@ -1,18 +1,25 @@
 package com.demo.microservices.gatewayservice.security;
 
 import java.security.PublicKey;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.demo.microservices.gatewayservice.config.AppProperties;
+import com.demo.microservices.servicelibs.security.JwtConstants;
 import com.demo.microservices.servicelibs.security.JwtPublicKey;
+import com.demo.microservices.servicelibs.security.user.AppUser;
+import com.demo.microservices.servicelibs.security.user.AppUserPrincipal;
 import com.demo.microservices.servicelibs.util.JwtUtil;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
@@ -22,17 +29,13 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class JwtTokenProvider {
-	private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
+public class JwtTokenValidator {
+	private static final Logger logger = LoggerFactory.getLogger(JwtTokenValidator.class);
 
 	private PublicKey publicKey;
 	
 	@NonNull
 	private RestTemplate restTemplate;
-	
-	@NonNull
-	private AppProperties appProperties;
-
     
     private static final String CLAIM_KEY_AUTHORITIES = "authorities";
     private static final String CLAIM_KEY_USERNAME = "username";
@@ -43,10 +46,27 @@ public class JwtTokenProvider {
     	publicKey = JwtUtil.convertFrom(key);
     }
     
-    public Long getUserIdFromJWT(String token) {
-    	Claims claims = Jwts.parser().setSigningKey(publicKey)
+    public AppUserPrincipal getUserDetailFromJWT(String token) {
+    	//Get UserId
+    	Claims claimsBody = Jwts.parser().setSigningKey(publicKey)
     								.parseClaimsJws(token).getBody();
-    	return Long.parseLong(claims.getSubject());
+    	Long userId = Long.parseLong(claimsBody.getSubject());
+
+    	//Get user details
+    	Jws<Claims> claims = Jwts.parser()
+    			  .setSigningKey(publicKey)
+    			  .parseClaimsJws(token);
+    			
+    	String email = String.valueOf(claims.getBody().get(JwtConstants.CLAIM_KEY_EMAIL));
+    	String name = String.valueOf(claims.getBody().get(JwtConstants.CLAIM_KEY_FULLNAME));
+    	String username = (String)claims.getBody().get(JwtConstants.CLAIM_KEY_USERNAME);
+    	List<String> roles = (List<String>)claims.getBody().get(JwtConstants.CLAIM_KEY_AUTHORITIES);
+    	List<GrantedAuthority> authorities = roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+
+    	AppUserPrincipal principle = new AppUserPrincipal(userId, username, name, authorities);
+    	principle.setEmail(email);
+    	
+    	return principle;
     }
     
     

@@ -21,7 +21,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.demo.microservices.authservice.model.User;
 import com.demo.microservices.authservice.model.UserPrincipal;
-import com.demo.microservices.servicelibs.security.SecurityConstants;
+import com.demo.microservices.servicelibs.security.JwtConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
@@ -57,10 +57,10 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 			WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 			jwtTokenProvider = webApplicationContext.getBean(JwtTokenProvider.class);
 		}
-		String token = jwtTokenProvider.generateRSAToken(authentication); 
+		String token = jwtTokenProvider.generateToken(authentication); 
 		
 		JwtAuthenticationToken jwtToken = new JwtAuthenticationToken(token, (UserPrincipal)authentication.getPrincipal());
-		response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
+		response.addHeader(JwtConstants.HEADER_STRING, JwtConstants.TOKEN_PREFIX + token);
 		response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
