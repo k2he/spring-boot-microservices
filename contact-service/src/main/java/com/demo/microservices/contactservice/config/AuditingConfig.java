@@ -1,4 +1,4 @@
-package com.demo.microservices.projectservice.config;
+package com.demo.microservices.contactservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

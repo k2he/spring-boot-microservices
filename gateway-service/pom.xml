@@ -43,30 +43,12 @@
 	       	<artifactId>service-libs</artifactId>
 	       	<version>0.0.1-SNAPSHOT</version>
 	 	</dependency>
-	 	<!-- <dependency>
-			<groupId>com.demo.microservices</groupId>
-	       	<artifactId>auth-service</artifactId>
-	       	<version>0.0.1-SNAPSHOT</version>
-	 	</dependency> -->
-	 	<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
 		
-		<dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.5.1</version>
 		</dependency>
-		<dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-client</artifactId>
-        </dependency>
         
 	 	<dependency>
 			<groupId>org.projectlombok</groupId>

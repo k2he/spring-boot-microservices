@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/contacts")
 @CrossOrigin
 @RequiredArgsConstructor
 public class ContactUsController {

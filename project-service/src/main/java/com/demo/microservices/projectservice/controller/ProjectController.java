@@ -25,7 +25,7 @@ import com.demo.microservices.projectservice.service.ProjectService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/")
+@RequestMapping("/projects")
 public class ProjectController {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 

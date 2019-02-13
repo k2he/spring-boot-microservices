@@ -1,4 +1,4 @@
-package com.demo.microservices.gatewayservice.security;
+package com.demo.microservices.contactservice.security;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.demo.microservices.gatewayservice.config;
+package com.demo.microservices.projectservice.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,13 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.client.RestTemplate;
 
-import com.demo.microservices.gatewayservice.security.JwtAuthorizationFilter;
+import com.demo.microservices.projectservice.security.JwtAuthorizationFilter;
 import com.demo.microservices.servicelibs.security.JwtAuthenticationEntryPoint;
 import com.demo.microservices.servicelibs.security.JwtTokenValidator;
-
-
-
-
 
 @ComponentScan(basePackages= {"com.demo.microservices.servicelibs.security"})
 @Configuration
@@ -56,7 +52,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers("/auth/**").permitAll()
             .anyRequest()
             .authenticated()
             .and()
@@ -65,3 +60,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 }
+
