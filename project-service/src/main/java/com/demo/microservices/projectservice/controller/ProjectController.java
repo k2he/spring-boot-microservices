@@ -6,9 +6,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,14 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.demo.microservices.projectservice.model.ProjectInfo;
 import com.demo.microservices.projectservice.service.ProjectService;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 
 @RestController
-@CrossOrigin
 @RequestMapping("/projects")
+@RequiredArgsConstructor
 public class ProjectController {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
-	@Autowired
+	@NonNull
 	ProjectService projectService;
 	
 	//Get All projects

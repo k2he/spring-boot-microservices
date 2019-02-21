@@ -55,8 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest()
             .authenticated()
             .and()
-            .addFilterAfter(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-            .httpBasic().and().csrf().disable();
+            .addFilterAfter(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 
 }
