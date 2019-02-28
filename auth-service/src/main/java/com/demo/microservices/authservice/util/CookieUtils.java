@@ -56,4 +56,11 @@ public class CookieUtils {
 				Base64.getUrlDecoder().decode(cookie.getValue())
 		));
 	}
+	
+	//This a temp walk around solution
+	public static <T> T deserialize(String request, Class<T> cls) {
+		return cls.cast(SerializationUtils.deserialize(
+				Base64.getUrlDecoder().decode(request)
+		));
+	}
 }

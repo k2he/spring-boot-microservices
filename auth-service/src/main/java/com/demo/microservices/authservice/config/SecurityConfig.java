@@ -49,10 +49,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
 
-    @Bean
-    public HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository() {
-        return new HttpCookieOAuth2AuthorizationRequestRepository();
-    }
+    @Autowired
+    private HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository;
+//    @Bean
+//    public HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository() {
+//        return new HttpCookieOAuth2AuthorizationRequestRepository();
+//    }
     
 	@Bean
     public PasswordEncoder passwordEncoder() {
@@ -82,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .oauth2Login()
 			    .authorizationEndpoint()
 			    .baseUri("/oauth2/authorize")
-			    .authorizationRequestRepository(cookieAuthorizationRequestRepository())
+			    .authorizationRequestRepository(cookieAuthorizationRequestRepository)
 			    .and()
 			.redirectionEndpoint()
 			    .baseUri("/login/oauth2/code/*")

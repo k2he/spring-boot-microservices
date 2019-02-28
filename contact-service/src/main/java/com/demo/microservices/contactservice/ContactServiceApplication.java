@@ -1,5 +1,9 @@
 package com.demo.microservices.contactservice;
 
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,6 +20,11 @@ import org.springframework.web.client.RestTemplate;
 @EnableCircuitBreaker      // Enable circuit breakers
 public class ContactServiceApplication {
 
+	@PostConstruct
+	void init() {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ContactServiceApplication.class, args);
 	}

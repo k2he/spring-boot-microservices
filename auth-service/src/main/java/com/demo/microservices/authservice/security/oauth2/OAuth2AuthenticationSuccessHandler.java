@@ -56,8 +56,12 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	}
 	
 	protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-		Optional<String> redirectUri = CookieUtils.getCookie(request, HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME)
-				.map(Cookie::getValue);
+		//Walk around code
+		Optional<String> redirectUri = Optional.of(httpCookieOAuth2AuthorizationRequestRepository.getREDIRECT_URI_PARAM());
+		
+		
+//		Optional<String> redirectUri = CookieUtils.getCookie(request, HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME)
+//				.map(Cookie::getValue);
 		
 		if (!redirectUri.isPresent() || !isAuthorizedRedirectUri(redirectUri.get())) {
 			throw new OAuth2AuthenticationProcessingException("Sorry! We've got an Unauthorized Redirect URI and can't proceed with the authentication");
