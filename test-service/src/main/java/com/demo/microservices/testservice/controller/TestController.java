@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.microservices.testservice.model.TestResult;
 import com.demo.microservices.testservice.service.TestService;
 
 import lombok.NonNull;
@@ -20,20 +21,23 @@ public class TestController {
 	private TestService testService;
 	
 	// Test retry fail test case
-	@GetMapping("/retry-failed")
-	public String retryFailed() throws Exception {
-		return testService.testRetryFailed();
+	@GetMapping("/retry-fail")
+	public TestResult retryFailed() throws Exception {
+		String result = testService.testRetryFailed();
+		return new TestResult(result);
 	}
 	
 	// Test retry fail test case
 	@GetMapping("/retry-success")
-	public String retrySuccess(@RequestHeader("Authorization") String token) {
-		return testService.testRetrySuccess(token);
+	public TestResult retrySuccess(@RequestHeader("Authorization") String token) {
+		String result = testService.testRetrySuccess(token);
+		return new TestResult(result);
 	}
 
 	// Test retry fail test case
 	@GetMapping("/circuit-breaker")
-	public String circuitBreaker() {
-		return testService.testCircuitBreaker();
+	public TestResult circuitBreaker() {
+		String result = testService.testCircuitBreaker();
+		return new TestResult(result);
 	}
 }

@@ -64,7 +64,7 @@ public class TestServiceImpl implements TestService {
 		RERTY_COUNTER++;
 		logger.info("testRetrySuccess() Retry count = " + RERTY_COUNTER);
 		
-		if (RERTY_COUNTER < 4) {
+		if (RERTY_COUNTER < 3) {
 			throw new RuntimeException();
 		}
 		
