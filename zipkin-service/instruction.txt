@@ -1,0 +1,4 @@
+Build Our own zipkin server is not recommanded. 
+
+Instead just run following command in Docker to start zipkin container: 
+docker run -d -p 9411:9411 openzipkin/zipkin
