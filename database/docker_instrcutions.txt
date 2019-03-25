@@ -1,0 +1,13 @@
+Run below command in console: 
+
+1, docker build -t victoryssmile/mysql-database .                                                                       <--- Build Database Image
+2, docker run -d -p 3308:3306 --name mysql-database -e MYSQL_ROOT_PASSWORD=root123 victoryssmile/mysql-database         <--- Build and run Container
+3, 
+
+Other helpful commands:
+1, docker exec -it mysql-database bash                  <--- Login to Database
+2, mysql -uroot -p                                      <--- Trying to login
+3, show databases;                                      <--- Show database
+4, use my_database;                                     <--- go into the database
+5, show tables;                                         <--- show all tables
+6, select * from app_user;                              <--- making sure user role is setup properly

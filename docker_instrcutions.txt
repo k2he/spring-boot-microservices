@@ -1,0 +1,29 @@
+This file Describe How to build, run, push code to Docker Hub.
+
+Run below command in console: 
+
+#1: Build service-lib jar and install on local maven repo
+mvn clean install
+
+#2: Compile Each service and build docker image
+mvn clean package -DskipTests dockerfile:build     <-- Build Jar and create Docker Image
+docker push ${image_name}                          <-- Push Image to Docker hub
+
+#3 Start all Services
+docker-compose up
+
+#4 Stop all Services
+docker-compose down
+
+
+##### Manually Start Services #########
+1, docker run -d -p 9411:9411 openzipkin/zipkin
+2, docker run -d -p 3308:3306 --name mysql-database -e MYSQL_ROOT_PASSWORD=root123 victoryssmile/mysql-database
+3, docker run -d -p 8761:8761 --name registry-service victoryssmile/springboot-microservice-registry-server:0.0.1-SNAPSHOT
+4, docker run -d -p 8888:8888 --name config-server victoryssmile/springboot-microservice-config-server:0.0.1-SNAPSHOT
+5, docker run -d -p 9100:9100 --name auth-server victoryssmile/springboot-microservice-auth-service:0.0.1-SNAPSHOT
+6, docker run -d -p 8100:8100 --name contact-service victoryssmile/springboot-microservice-contact-service:0.0.1-SNAPSHOT
+7, docker run -d -p 8200:8200 --name project-service victoryssmile/springboot-microservice-project-service:0.0.1-SNAPSHOT
+8, docker run -d -p 8300:8300 --name test-service victoryssmile/springboot-microservice-test-service:0.0.1-SNAPSHOT
+9, docker run -d -p 8080:8080 --name gateway-service victoryssmile/springboot-microservice-gateway-service:0.0.1-SNAPSHOT
+
