@@ -40,7 +40,7 @@ Also and there is a REST endpoint to access Public Key.
 <b>Public and Private Key"</b>
 Public and Private key are stored in Key Store to prevent outside getting private key.
 
-<b>"Each other services"</b>
+<b>"Each Individual Services"</b>
 Call to Each individule Service also need be validated using JWT token to improve security on individual service level. Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation fail, request get rejected. If success, resoure will be returned.
 
 </pre>
