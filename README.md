@@ -11,10 +11,15 @@ Rebuild REST APIs using Microservice Archtecture.
 3, <b>Authentication Server (Eureka client)</b>: Validate User by check username and password in Database or using 
    Oauth2 (Social Login).
    Using Java Keystores to store Private and Public key pair. JWT is created and signed with Private key. Expose 
-   an endpoint to ask for Public key.
+   an endpoint to get Public key.
     
 3, <b>Config Server</b>: Centralized place for properties. Geting property files from Github repository.
 
-4, 
+4, <b>Project Service (Eureka clients)</b>: REST API endpoints to perform Project related operations (JPA) 
+
+5, <b>Contact Service (Eureka clients)</b>: REST API endpoints to perform Contact related operations (JPA)
+
+6, <b>Test Service (Eureka clients)</b>: This is for test purpose. REST API endpoints for test purpose. 
+   To test <b>Retry</b>, <b>Circuit Breaker</b>
 </pre>
 
