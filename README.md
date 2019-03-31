@@ -26,3 +26,14 @@ Rebuild REST APIs using Microservice Archtecture.
    If code changed, need run: mvn clean install
 </pre>
 
+## Security Design and workflow
+<pre>
+Using JWT token (included Expiration time and User role) to validate User access. First time when user trying to login, redirect to Authentication Server.
+
+<b>"Authentication Server Desgin"</b>
+1) If user choose to login using username and password, then validate again User information stored in Database along with User role. 
+2) If user choose to login using social login, redirect to Social Login page, if user grant access (email and profile). System will automatically create a new account using Email.
+
+On Login success, JWT token will
+
+</pre>
