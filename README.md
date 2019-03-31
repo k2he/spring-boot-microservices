@@ -13,7 +13,7 @@ Rebuild REST APIs using Microservice Archtecture.
    Using Java Keystores to store Private and Public key pair. JWT is created and signed with Private key. Expose 
    an endpoint to get Public key.
     
-3, <b>Config Server</b>: Centralized place for properties. Geting property files from Github repository.
+3, <b>Config Server Eureka clients</b>: Centralized place for properties. Geting property files from Github repository.
 
 4, <b>Project Service (Eureka clients)</b>: REST API endpoints to perform Project related operations (JPA) 
 
@@ -22,9 +22,13 @@ Rebuild REST APIs using Microservice Archtecture.
 6, <b>Test Service (Eureka clients)</b>: This is for test purpose. REST API endpoints for test purpose. 
    To test <b>Retry</b>, <b>Circuit Breaker</b>
    
-7, <b>service-libs</b> package: Lib for share code used by other services. 
+7, <b>Sleuth and Zipkin Server</b>: Call trace is sending to Zipking Server, it's help us to trace calls and debug.
+
+8, <b>service-libs</b> package: Lib for share code used by other services. 
    If code changed, need run: mvn clean install
 </pre>
+
+9, <b>TODO: Add Centralized logging (ELK Stack) </b>: Need check out options and add centralized logging mechanism.
 
 ## Security Design and workflow
 <pre>
