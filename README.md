@@ -21,5 +21,8 @@ Rebuild REST APIs using Microservice Archtecture.
 
 6, <b>Test Service (Eureka clients)</b>: This is for test purpose. REST API endpoints for test purpose. 
    To test <b>Retry</b>, <b>Circuit Breaker</b>
+   
+7, <b>service-libs</b> package: Lib for share code used by other services. 
+   If code changed, need run: mvn clean install
 </pre>
 
