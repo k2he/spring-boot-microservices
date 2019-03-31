@@ -28,8 +28,6 @@ Rebuild REST APIs using Microservice Archtecture.
    If code changed, need run: mvn clean install
 </pre>
 
-9, <b>TODO: Add Centralized logging (ELK Stack) </b>: Need check out options and add centralized logging mechanism.
-
 ## Security Design and workflow
 <pre>
 Using JWT token (included Expiration time and User role) to validate User access. First time when user trying to login, redirect to Authentication Server.
@@ -48,3 +46,18 @@ Public and Private key are stored in Key Store to prevent outside getting privat
 Call to Each individule Service also need be validated using JWT token to improve security on individual service level. Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation fail, request get rejected. If success, resoure will be returned.
 
 </pre>
+
+## Deployment
+Each service contains a Dockerfile, and a docker image are on docker hub:
+https://cloud.docker.com/repository/list
+
+We can be deployed to Cloud provide using Kubernetes or Cloud Provider have it's own tool for easy deployment. 
+For instance:
+AWS we can use ECS to deploy docker into EC2 instances and do auto-scaling. 
+
+## TODO List
+<pre>
+1, <b>Add Centralized logging (ELK Stack) </b>: Need check out options and add centralized logging mechanism.
+
+</pre>
+
