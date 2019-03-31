@@ -54,7 +54,7 @@ fail, request get rejected. If success, resoure will be returned.
 </pre>
 
 ## Deployment
-Each service contains a Dockerfile, and a docker image are on docker hub:
+Each service contains a Dockerfile, and docker images are on docker hub:
 
 https://cloud.docker.com/repository/list
 
