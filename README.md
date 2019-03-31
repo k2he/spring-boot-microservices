@@ -39,7 +39,7 @@ Using JWT token (included Expiration time and User role) to validate User access
 On success login, JWT token will generated containing User roles, and sign with Private Key from Key Store, and return as login response. 
 Also and there is a REST endpoint to access Public Key.
 
-<b>Public & Private Key"</b>
+<b>"Public & Private Key"</b>
 Public and Private key are stored in Key Store to prevent outside getting private key.
 
 <b>"Each Individual Services"</b>
