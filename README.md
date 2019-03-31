@@ -36,14 +36,17 @@ Using JWT token (included Expiration time and User role) to validate User access
 1) If user choose to login using username and password, then validate again User information stored in Database along with User role. 
 2) If user choose to login using social login, redirect to Social Login page, if user grant access (email and profile). System will automatically create a new account using Email.
 
-On success login, JWT token will generated containing User roles, and sign with Private Key from Key Store, and return as login response. 
+On success login, JWT token will generated containing User roles, and sign with Private Key from Key Store, and return 
+as login response. 
 Also and there is a REST endpoint to access Public Key.
 
 <b>"Public & Private Key"</b>
 Public and Private key are stored in Key Store to prevent outside getting private key.
 
 <b>"Each Individual Services"</b>
-Call to Each individule Service also need be validated using JWT token to improve security on individual service level. Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation fail, request get rejected. If success, resoure will be returned.
+Call to Each individule Service also need be validated using JWT token to improve security on individual service level. 
+Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation fail, request 
+get rejected. If success, resoure will be returned.
 
 </pre>
 
