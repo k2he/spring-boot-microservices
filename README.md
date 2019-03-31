@@ -30,11 +30,14 @@ Rebuild REST APIs using Microservice Archtecture.
 
 ## Security Design and workflow
 <pre>
-Using JWT token (included Expiration time and User role) to validate User access. First time when user trying to login, redirect to Authentication Server.
+Using JWT token (included Expiration time and User role) to validate User access. First time when user trying to 
+login, redirect to Authentication Server.
 
 <b>"Authentication Server Desgin"</b>
-1) If user choose to login using username and password, then validate again User information stored in Database along with User role. 
-2) If user choose to login using social login, redirect to Social Login page, if user grant access (email and profile). System will automatically create a new account using Email.
+1) If user choose to login using username and password, then validate again User information stored in Database 
+   along with User role. 
+2) If user choose to login using social login, redirect to Social Login page, if user grant access (email and 
+   profile). System will automatically create a new account using Email.
 
 On success login, JWT token will generated containing User roles, and sign with Private Key from Key Store, and return 
 as login response. 
@@ -44,7 +47,8 @@ Also and there is a REST endpoint to access Public Key.
 Public and Private key are stored in Key Store to prevent outside getting private key.
 
 <b>"Each Individual Services"</b>
-Call to Each individule Service also need be validated using JWT token to improve security on individual service level. 
+Call to Each individule Service also need be validated using JWT token to improve security on individual 
+service level. 
 Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation fail, request 
 get rejected. If success, resoure will be returned.
 
@@ -62,8 +66,8 @@ AWS we can use ECS to deploy docker into EC2 instances and do auto-scaling.
 <pre>
 1, Add Centralized logging (ELK Stack): Need check out options and add centralized logging mechanism.
 
-2, Since Kubernete has it's component similar to Registry server and Config Server, need check out what's the best way to integrate
-   Spring boot with Kubernete.
+2, Since Kubernete has it's component similar to Registry server and Config Server, need check out what's the best
+   way to integrate Spring boot with Kubernete.
    
 3, Need check more on best way to handle failure and Delay how to tell Kubernete when to re-create a Pod.
 </pre>
