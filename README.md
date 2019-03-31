@@ -39,9 +39,8 @@ login, redirect to Authentication Server.
 2) If user choose to login using social login, redirect to Social Login page, if user grant access (email and 
    profile). System will automatically create a new account using Email.
 
-On success login, JWT token will generated containing User roles, and sign with Private Key from Key Store, and return 
-as login response. 
-Also and there is a REST endpoint to access Public Key.
+On success login, JWT token will generated containing User roles, and sign with Private Key from Key Store, 
+and return as login response. Also and there is a REST endpoint to access Public Key.
 
 <b>"Public & Private Key"</b>
 Public and Private key are stored in Key Store to prevent outside getting private key.
@@ -49,13 +48,14 @@ Public and Private key are stored in Key Store to prevent outside getting privat
 <b>"Each Individual Services"</b>
 Call to Each individule Service also need be validated using JWT token to improve security on individual 
 service level. 
-Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation fail, request 
-get rejected. If success, resoure will be returned.
+Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation 
+fail, request get rejected. If success, resoure will be returned.
 
 </pre>
 
 ## Deployment
 Each service contains a Dockerfile, and a docker image are on docker hub:
+
 https://cloud.docker.com/repository/list
 
 We can be deployed to Cloud provide using Kubernetes or Cloud Provider have it's own tool for easy deployment. 
