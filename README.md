@@ -1,6 +1,6 @@
 # spring-boot-microservices
-Rebuild REST APIs using Microservice Archtecture. 
-<img src="https://github.com/k2he/spring-boot-microservices/blob/v1.1-docker-compose/architecture_design.JPG">
+Build REST APIs using Microservice Archtecture with. Desgin as Below: 
+<img src="https://github.com/k2he/spring-boot-microservices/blob/master/architecture_design.JPG">
 
 ## Architectures Desgin and Technologies
 <pre>
