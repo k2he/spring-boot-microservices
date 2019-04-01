@@ -1,5 +1,5 @@
 # spring-boot-microservices
-Build REST APIs using Microservice Archtecture with. Desgin as Below: 
+Build REST APIs using Microservice Archtecture. Desgin diagram as below: 
 <img src="https://github.com/k2he/spring-boot-microservices/blob/master/architecture_design.JPG">
 
 ## Architectures Desgin and Technologies
