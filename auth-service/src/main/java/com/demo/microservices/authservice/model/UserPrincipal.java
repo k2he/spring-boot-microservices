@@ -35,7 +35,6 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 	private String name;
 	private String email;
 	
-	@NonNull
 	@JsonIgnore
 	private String password;
     
@@ -43,6 +42,15 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
     
     private Map<String, Object> attributes;
+    
+    public UserPrincipal(@NonNull Long id, @NonNull String username, @NonNull String name, String password,
+			@NonNull Collection<? extends GrantedAuthority> authorities) {
+		this.id = id;
+		this.username = username;
+		this.name = name;
+		this.password = password;
+		this.authorities = authorities;
+	}
     
     public static UserPrincipal create(User user) {
     	List<GrantedAuthority> authorities = user.getRoles().stream().map(
