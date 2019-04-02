@@ -1,5 +1,6 @@
 package com.demo.microservices.authservice.security.oauth2;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -13,11 +14,16 @@ import org.springframework.util.StringUtils;
 
 import com.demo.microservices.authservice.exception.OAuth2AuthenticationProcessingException;
 import com.demo.microservices.authservice.model.AuthProvider;
+import com.demo.microservices.authservice.model.Role;
+import com.demo.microservices.authservice.model.RoleName;
 import com.demo.microservices.authservice.model.User;
 import com.demo.microservices.authservice.model.UserPrincipal;
+import com.demo.microservices.authservice.repository.RoleRepository;
 import com.demo.microservices.authservice.repository.UserRepository;
 import com.demo.microservices.authservice.security.oauth2.user.OAuth2UserInfo;
 import com.demo.microservices.authservice.security.oauth2.user.OAuth2UserInfoFactory;
+import com.demo.microservices.servicelibs.exception.AppException;
+import com.demo.microservices.servicelibs.util.RandomStringGenerator;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +34,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 	@NonNull
 	private UserRepository userRepository;
+	
+	@NonNull
+	RoleRepository roleRepository;
 	
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -61,7 +70,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         	}
         	updateExistingUser(user, oAuth2UserInfo);
         } else {//User not found, create a new user 
-        	registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
+        	user = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
         }
         
         return UserPrincipal.create(user, oAuth2User.getAttributes());
@@ -69,13 +78,21 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 	
 	private User registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
 		User user = new User();
+		
+		user.setUsername(RandomStringGenerator.getAlphaNumericString(25));//Since Username is required for UserPrincipl, we generate a random one.
 		user.setEmail(oAuth2UserInfo.getEmail());
-		user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getClientId()));
+		user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
 		user.setProviderId(oAuth2UserInfo.getId());
 		user.setFirstName(oAuth2UserInfo.getFirstName());
 		user.setLastName(oAuth2UserInfo.getLastName());
 		user.setImageUrl(oAuth2UserInfo.getImageUrl());
-
+		user.setActive(true);
+		
+		// For demo purpose, set user to have admin role, so he/she can view all pages.
+		Role userRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                .orElseThrow(() -> new AppException("User Role not set."));
+		user.setRoles(Collections.singletonList(userRole));
+        
 		return userRepository.save(user);
 	}
 	
