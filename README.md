@@ -59,7 +59,7 @@ Each service contains a Dockerfile, and docker images are on docker hub:
 
 https://cloud.docker.com/repository/list
 
-We can be deployed to Cloud provide using Kubernetes or Cloud Provider have it's own tool for easy deployment. 
+It can be deployed to Cloud provide using Kubernetes or Cloud Provider have it's own tool for easy deployment. 
 For instance:
 AWS we can use ECS to deploy docker into EC2 instances and do auto-scaling. 
 
