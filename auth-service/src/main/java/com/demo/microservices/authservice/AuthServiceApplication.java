@@ -10,7 +10,6 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
-
 import com.demo.microservices.authservice.config.AppProperties;
 
 @SpringBootApplication
@@ -19,19 +18,19 @@ import com.demo.microservices.authservice.config.AppProperties;
 @EnableCircuitBreaker // Enable circuit breakers
 public class AuthServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AuthServiceApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(AuthServiceApplication.class, args);
+  }
 
-	@Bean
-	public ConfigurableServletWebServerFactory webServerFactory() {
-		TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-		factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
-			@Override
-			public void customize(Connector connector) {
-				connector.setProperty("relaxedQueryChars", "|{}[]");
-			}
-		});
-		return factory;
-	}
+  @Bean
+  public ConfigurableServletWebServerFactory webServerFactory() {
+    TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+    factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
+      @Override
+      public void customize(Connector connector) {
+        connector.setProperty("relaxedQueryChars", "|{}[]");
+      }
+    });
+    return factory;
+  }
 }

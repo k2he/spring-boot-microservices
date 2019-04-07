@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class TestResult {
-	private String result;
+  private String result;
 }

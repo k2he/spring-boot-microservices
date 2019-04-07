@@ -24,11 +24,7 @@ import com.demo.microservices.authservice.security.oauth2.OAuth2AuthenticationSu
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-    securedEnabled = true, 
-    jsr250Enabled = true, 
-    prePostEnabled = true
-)
+@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
@@ -66,18 +62,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(authEntryPoint)
-        .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+    http.cors().and().csrf().disable()
+        .exceptionHandling().authenticationEntryPoint(authEntryPoint)
+        .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
         .authorizeRequests().antMatchers(HttpMethod.POST, "/login/**").permitAll()
-        .antMatchers(HttpMethod.GET, "/public-key/**").permitAll().anyRequest().authenticated()
+        .antMatchers(HttpMethod.GET, "/public-key/**").permitAll()
+        .anyRequest().authenticated()
         .and()
         .addFilterBefore(new JwtAuthenticationFilter("/login", authenticationManager()),
             UsernamePasswordAuthenticationFilter.class)
-        .httpBasic().and().csrf().disable().oauth2Login().authorizationEndpoint()
+        .httpBasic().and().csrf().disable()
+        .oauth2Login()
+        .authorizationEndpoint()
         .baseUri("/oauth2/authorize")
-        .authorizationRequestRepository(cookieAuthorizationRequestRepository).and()
-        .redirectionEndpoint().baseUri("/login/oauth2/code/*").and().userInfoEndpoint()
-        .userService(customOAuth2UserService).and()
+        .authorizationRequestRepository(cookieAuthorizationRequestRepository)
+        .and()
+        .redirectionEndpoint().baseUri("/login/oauth2/code/*")
+        .and().userInfoEndpoint().userService(customOAuth2UserService)
+        .and()
         .successHandler(oAuth2AuthenticationSuccessHandler)
         .failureHandler(oAuth2AuthenticationFailureHandler);
   }
