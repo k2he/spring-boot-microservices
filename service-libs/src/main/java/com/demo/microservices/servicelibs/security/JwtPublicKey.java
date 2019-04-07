@@ -10,5 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JwtPublicKey {
-	private String base64Key;
+  private String base64Key;
 }
