@@ -14,13 +14,13 @@ public class RequestContext {
 	private String token;
 
 	public static RequestContext getContext() {
-	    RequestContext result = CONTEXT.get();
+		RequestContext result = CONTEXT.get();
 
-	    if (result == null) {
-	        result = new RequestContext();
-	        CONTEXT.set(result);
-	    }
+		if (result == null) {
+			result = new RequestContext();
+			CONTEXT.set(result);
+		}
 
-	    return result;
+		return result;
 	}
 }

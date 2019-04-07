@@ -16,7 +16,7 @@ import com.demo.microservices.authservice.config.AppProperties;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableConfigurationProperties(AppProperties.class)
-@EnableCircuitBreaker      // Enable circuit breakers
+@EnableCircuitBreaker // Enable circuit breakers
 public class AuthServiceApplication {
 
 	public static void main(String[] args) {
@@ -25,14 +25,13 @@ public class AuthServiceApplication {
 
 	@Bean
 	public ConfigurableServletWebServerFactory webServerFactory() {
-	    TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-	    factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
-	        @Override
-	        public void customize(Connector connector) {
-	            connector.setProperty("relaxedQueryChars", "|{}[]");
-	        }
-	    });
-	    return factory;
+		TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+		factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
+			@Override
+			public void customize(Connector connector) {
+				connector.setProperty("relaxedQueryChars", "|{}[]");
+			}
+		});
+		return factory;
 	}
 }
-

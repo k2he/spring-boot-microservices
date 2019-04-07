@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.demo.microservices.contactservice.model.ContactUsInfo;
 import com.demo.microservices.contactservice.repository.ContactUsRepository;
 
-
 @Service("cotactService")
 public class ContactServiceImpl implements ContactService {
 

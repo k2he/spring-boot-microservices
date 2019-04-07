@@ -12,7 +12,7 @@ import org.springframework.retry.annotation.EnableRetry;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableCircuitBreaker      // Enable circuit breakers
+@EnableCircuitBreaker // Enable circuit breakers
 @EnableRetry
 public class TestServiceApplication {
 
@@ -20,7 +20,7 @@ public class TestServiceApplication {
 	void init() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(TestServiceApplication.class, args);
 	}

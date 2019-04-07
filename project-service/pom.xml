@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.demo.microservices</groupId>
 	<artifactId>project-service</artifactId>
@@ -24,7 +24,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -40,61 +40,61 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-	 	<dependency>
-		 	<groupId>org.springframework.cloud</groupId>
-		 	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		 	<version>2.0.0.RELEASE</version>
-	 	</dependency>
-		
+
 		<dependency>
-		   <groupId>org.springframework.cloud</groupId>
-		   <artifactId>spring-cloud-starter-config</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>2.0.0.RELEASE</version>
 		</dependency>
-		
-	 	<dependency>
-         	<groupId>mysql</groupId>
-         	<artifactId>mysql-connector-java</artifactId>
-         	<scope>runtime</scope>
-     	</dependency>
-	        
-     	<dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-	 	</dependency>
-		
-	 	<dependency>
-		 	<groupId>org.springframework.boot</groupId>
-		 	<artifactId>spring-boot-starter-data-rest</artifactId>
-	 	</dependency>
-		 
-	 	<dependency>
-	  		<groupId>org.springframework.cloud</groupId>
-		  	<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
-		
+
 		<dependency>
-		  	<groupId>org.springframework.cloud</groupId>
-		  	<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>org.springframework.cloud</groupId>
-		    <artifactId>spring-cloud-starter-zipkin</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
-		
-	 	<dependency>
-		 	<groupId>org.springframework.boot</groupId>
-		 	<artifactId>spring-boot-devtools</artifactId>
-		 	<optional>true</optional>
-	 	</dependency>
-		 
-	 	<dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
 			<groupId>com.demo.microservices</groupId>
-	       	<artifactId>service-libs</artifactId>
-	       	<version>0.0.1-SNAPSHOT</version>
-	 	</dependency>
-	 
+			<artifactId>service-libs</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -108,14 +108,14 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>

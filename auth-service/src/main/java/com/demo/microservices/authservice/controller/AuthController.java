@@ -13,13 +13,12 @@ import com.demo.microservices.servicelibs.security.JwtPublicKey;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
-	
+
 	@NonNull
 	private RSAKeys jwtKeys;
 

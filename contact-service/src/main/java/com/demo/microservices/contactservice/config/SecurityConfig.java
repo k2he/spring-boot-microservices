@@ -18,45 +18,40 @@ import com.demo.microservices.contactservice.security.JwtAuthorizationFilter;
 import com.demo.microservices.servicelibs.security.JwtAuthenticationEntryPoint;
 import com.demo.microservices.servicelibs.security.JwtTokenValidator;
 
-@ComponentScan(basePackages= {"com.demo.microservices.servicelibs.security"})
+@ComponentScan(basePackages = { "com.demo.microservices.servicelibs.security" })
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-        securedEnabled = true,
-        jsr250Enabled = true,
-        prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	RestTemplate restTemplate;
-	
+
 	@Bean
-    public JwtAuthenticationEntryPoint authEntryPoint() {
-        return new JwtAuthenticationEntryPoint();
-    }
-	
+	public JwtAuthenticationEntryPoint authEntryPoint() {
+		return new JwtAuthenticationEntryPoint();
+	}
+
 	@Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-	
-	@Bean 
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
 	public JwtTokenValidator jwtTokenProvider() {
 		return new JwtTokenValidator(restTemplate);
 	}
-	
+
 	@Override
-    protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()
 			.exceptionHandling().authenticationEntryPoint(authEntryPoint())
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .authorizeRequests()
-            .anyRequest()
-            .authenticated()
-            .and()
-            .addFilterAfter(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+			.and()
+			.authorizeRequests().anyRequest()
+			.authenticated()
+			.and()
+			.addFilterAfter(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 
 }
-

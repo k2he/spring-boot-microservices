@@ -7,13 +7,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.demo.microservices.servicelibs.audit.AppAuditAwareImpl;
 
-
 @Configuration
 @EnableJpaAuditing
 public class AuditingConfig {
-	
+
 	@Bean
-    public AuditorAware<Long> auditorProvider() {
-        return new AppAuditAwareImpl();
-    }
+	public AuditorAware<Long> auditorProvider() {
+		return new AppAuditAwareImpl();
+	}
 }
