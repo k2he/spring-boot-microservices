@@ -1,6 +1,5 @@
 package com.demo.microservices.servicelibs.audit;
 
-import java.nio.file.attribute.UserPrincipal;
 import java.util.Optional;
 
 import org.springframework.data.domain.AuditorAware;
@@ -16,13 +15,12 @@ public class AppAuditAwareImpl implements AuditorAware<Long> {
 	public Optional<Long> getCurrentAuditor() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		if (authentication == null ||
-                !authentication.isAuthenticated() ||
-                authentication instanceof AnonymousAuthenticationToken) {
-            return Optional.empty();
-        }
-		
-		AppUserPrincipal userPrincipal = (AppUserPrincipal)authentication.getPrincipal();
+		if (authentication == null || !authentication.isAuthenticated()
+				|| authentication instanceof AnonymousAuthenticationToken) {
+			return Optional.empty();
+		}
+
+		AppUserPrincipal userPrincipal = (AppUserPrincipal) authentication.getPrincipal();
 		return Optional.ofNullable(userPrincipal.getId());
 	}
 

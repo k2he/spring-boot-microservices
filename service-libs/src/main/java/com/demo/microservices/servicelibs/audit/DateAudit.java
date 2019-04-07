@@ -20,10 +20,10 @@ import lombok.Setter;
 public abstract class DateAudit {
 
 	@CreatedDate
-    @Column(name = "created_on", nullable = false, updatable = false)
-    private Instant createdOn;
+	@Column(name = "created_on", nullable = false, updatable = false)
+	private Instant createdOn;
 
-    @LastModifiedDate
-    @Column(name = "updated_on", nullable = false)
-    private Instant updatedOn;
+	@LastModifiedDate
+	@Column(name = "updated_on", nullable = false)
+	private Instant updatedOn;
 }

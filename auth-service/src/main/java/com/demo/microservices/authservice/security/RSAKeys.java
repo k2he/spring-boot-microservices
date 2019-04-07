@@ -21,27 +21,27 @@ import lombok.Setter;
 @Setter
 public class RSAKeys {
 
-       private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-       private PrivateKey privateKey;
-       private PublicKey publicKey;
+	private PrivateKey privateKey;
+	private PublicKey publicKey;
 
-       @PostConstruct
-       public void init(){
-    	   getKeysFromStore();
-       }
+	@PostConstruct
+	public void init() {
+		getKeysFromStore();
+	}
 
-       public void getKeysFromStore() {
-    	   try {
-    		   ClassPathResource resource = new ClassPathResource("keystore.jks");
-               KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-               keystore.load(resource.getInputStream(), "storePassword".toCharArray());
-               privateKey = (PrivateKey)keystore.getKey("jwtkey", "keyPassword".toCharArray());
-               Certificate cert = keystore.getCertificate("jwtkey");
-               publicKey = cert.getPublicKey();
+	public void getKeysFromStore() {
+		try {
+			ClassPathResource resource = new ClassPathResource("keystore.jks");
+			KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+			keystore.load(resource.getInputStream(), "storePassword".toCharArray());
+			privateKey = (PrivateKey) keystore.getKey("jwtkey", "keyPassword".toCharArray());
+			Certificate cert = keystore.getCertificate("jwtkey");
+			publicKey = cert.getPublicKey();
 
-    	   } catch (Exception e) {
-               logger.error("Error getting private and public keys: " + e);     
-           }
-       }
+		} catch (Exception e) {
+			logger.error("Error getting private and public keys: " + e);
+		}
+	}
 }

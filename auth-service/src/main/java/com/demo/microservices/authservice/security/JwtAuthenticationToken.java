@@ -1,6 +1,5 @@
 package com.demo.microservices.authservice.security;
 
-
 import com.demo.microservices.authservice.model.UserPrincipal;
 
 import lombok.AllArgsConstructor;

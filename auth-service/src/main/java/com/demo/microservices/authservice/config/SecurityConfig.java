@@ -45,12 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
-    
-    @Autowired
-    private HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
 
     @Autowired
     private HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository;
+    
 //    @Bean
 //    public HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository() {
 //        return new HttpCookieOAuth2AuthorizationRequestRepository();
@@ -92,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.userInfoEndpoint()
 			    .userService(customOAuth2UserService)
 			    .and()
-			.successHandler(oAuth2AuthenticationSuccessHandler)
-			.failureHandler(oAuth2AuthenticationFailureHandler);
+				.successHandler(oAuth2AuthenticationSuccessHandler)
+				.failureHandler(oAuth2AuthenticationFailureHandler);
 	}
 }

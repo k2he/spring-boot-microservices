@@ -21,41 +21,43 @@ import com.demo.microservices.servicelibs.security.JwtTokenValidator;
 import com.demo.microservices.servicelibs.security.user.AppUserPrincipal;
 import com.demo.microservices.testservice.config.RequestContext;
 
-
 public class JwtAuthorizationFilter extends GenericFilterBean {
-	
-    private JwtTokenValidator jwtTokenProvider;
-	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+
+	private JwtTokenValidator jwtTokenProvider;
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
 		try {
-			//Initialize jwtTokenProvider and userDetailService
+			// Initialize jwtTokenProvider and userDetailService
 			if (jwtTokenProvider == null) {
 				ServletContext servletContext = request.getServletContext();
-				WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+				WebApplicationContext webApplicationContext = WebApplicationContextUtils
+						.getWebApplicationContext(servletContext);
 				jwtTokenProvider = webApplicationContext.getBean(JwtTokenValidator.class);
 			}
-			
-			String token = getJwtFromRequest((HttpServletRequest)request);
+
+			String token = getJwtFromRequest((HttpServletRequest) request);
 			if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
 				AppUserPrincipal userDetails = jwtTokenProvider.getUserDetailFromJWT(token);
 
-				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+						userDetails, null, userDetails.getAuthorities());
 				SecurityContextHolder.getContext().setAuthentication(authentication);
-				
+
 				RequestContext.getContext().setToken(token);
 			}
 		} catch (Exception ex) {
 			logger.error("Could not set user authentication in security context", ex);
 		}
-		
+
 		filterChain.doFilter(request, response);
 	}
 
 	private String getJwtFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader(JwtConstants.HEADER_STRING);
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtConstants.TOKEN_PREFIX)) {
-            return bearerToken.substring(7, bearerToken.length());
-        }
-        return null;
-    }
+		String bearerToken = request.getHeader(JwtConstants.HEADER_STRING);
+		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtConstants.TOKEN_PREFIX)) {
+			return bearerToken.substring(7, bearerToken.length());
+		}
+		return null;
+	}
 }

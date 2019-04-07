@@ -26,30 +26,28 @@ public class JwtTokenProvider {
 
 	@NonNull
 	private AppProperties appProperties;
-	
+
 	@NonNull
 	private RSAKeys jwtKeys;
 
-    public String generateToken(Authentication authentication) {
-    	UserPrincipal userPrincipal = (UserPrincipal)authentication.getPrincipal();
-    	
-    	Date now = new Date();
-    	Date expiration = new Date(now.getTime() + appProperties.getJwt().getTokenExpirationMsec());
-    	
-    	Claims claims = Jwts.claims().setSubject(String.valueOf(userPrincipal.getId()));
-    	claims.put(JwtConstants.CLAIM_KEY_USERNAME, userPrincipal.getUsername());
-    	claims.put(JwtConstants.CLAIM_KEY_EMAIL, userPrincipal.getEmail());
-    	claims.put(JwtConstants.CLAIM_KEY_FULLNAME, userPrincipal.getName());
-    	List<String> authorities = userPrincipal.getAuthorities().stream().map(
-    			authoritity ->  authoritity.getAuthority()
-    			).collect(Collectors.toList());
-    	claims.put(JwtConstants.CLAIM_KEY_AUTHORITIES, authorities);
-	    
-    	return Jwts.builder()
-    			.setClaims(claims)
-    			.setIssuedAt(now)
-    			.setExpiration(expiration)
-    			.signWith(SignatureAlgorithm.RS256, jwtKeys.getPrivateKey())
-    			.compact();	
-    }
+	public String generateToken(Authentication authentication) {
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+		Date now = new Date();
+		Date expiration = new Date(now.getTime() + appProperties.getJwt().getTokenExpirationMsec());
+
+		Claims claims = Jwts.claims().setSubject(String.valueOf(userPrincipal.getId()));
+		claims.put(JwtConstants.CLAIM_KEY_USERNAME, userPrincipal.getUsername());
+		claims.put(JwtConstants.CLAIM_KEY_EMAIL, userPrincipal.getEmail());
+		claims.put(JwtConstants.CLAIM_KEY_FULLNAME, userPrincipal.getName());
+		List<String> authorities = userPrincipal.getAuthorities().stream()
+				.map(authoritity -> authoritity.getAuthority()).collect(Collectors.toList());
+		claims.put(JwtConstants.CLAIM_KEY_AUTHORITIES, authorities);
+
+		return Jwts.builder()
+				.setClaims(claims)
+				.setIssuedAt(now)
+				.setExpiration(expiration)
+				.signWith(SignatureAlgorithm.RS256, jwtKeys.getPrivateKey()).compact();
+	}
 }

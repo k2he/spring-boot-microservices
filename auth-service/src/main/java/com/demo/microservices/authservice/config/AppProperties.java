@@ -10,13 +10,13 @@ import lombok.Setter;
 public class AppProperties {
 	private final Jwt jwt = new Jwt();
 	private final Oauth2 oauth2 = new Oauth2();
-	
+
 	@Getter
 	@Setter
 	public static class Jwt {
-        private long tokenExpirationMsec;  
+		private long tokenExpirationMsec;
 	}
-	
+
 	@Getter
 	@Setter
 	public static class Oauth2 {
