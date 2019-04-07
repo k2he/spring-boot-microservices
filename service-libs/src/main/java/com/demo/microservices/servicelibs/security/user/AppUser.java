@@ -1,7 +1,6 @@
 package com.demo.microservices.servicelibs.security.user;
 
 import java.util.List;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -14,19 +13,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AppUser {
 
-	private Long id;
+  private Long id;
 
-	@NonNull
-	private String username;
+  @NonNull
+  private String username;
 
-	private String name;
+  private String name;
 
-	@NonNull
-	private String email;
+  @NonNull
+  private String email;
 
-	private String imageUrl;
+  private String imageUrl;
 
-	private Boolean active;
+  private Boolean active;
 
-	private List<String> roles;
+  private List<String> roles;
 }
