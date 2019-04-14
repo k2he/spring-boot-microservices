@@ -65,9 +65,11 @@ AWS we can use ECS to deploy docker into EC2 instances and do auto-scaling.
 
 ## TODO List
 <pre>
-1, Add Centralized logging (ELK Stack): Need check out options and add centralized logging mechanism.
+1, Implement CQRS & Event Sourcing using Kafka or Axon framework.
 
-2, Since Kubernete has it's component similar to Registry server and Config Server, need check out what's the best
+2, Add Centralized logging (ELK Stack): Need check out options and add centralized logging mechanism.
+
+3, Since Kubernete has it's component similar to Registry server and Config Server, need check out what's the best
    way to integrate Spring boot with Kubernete.
    
 3, Need check more on best way to handle failure and Delay how to tell Kubernete when to re-create a Pod.
