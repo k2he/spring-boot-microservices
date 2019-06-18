@@ -13,7 +13,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Component
-
 @Getter
 @Setter
 public class RSAKeys {
