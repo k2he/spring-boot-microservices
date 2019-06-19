@@ -1,0 +1,8 @@
+1, Start Zipkin
+docker run -d -p 9411:9411 openzipkin/zipkin
+
+2, Build ELK image (first time)
+docker build -t victoryssmile/beats-logging-elk:latest .
+
+3, Start ELK dockers
+docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 victoryssmile/beats-logging-elk:latest
