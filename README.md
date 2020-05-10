@@ -52,6 +52,33 @@ service level.
 Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation 
 fail, request get rejected. If success, resoure will be returned.
 
+<b>"Backend Internationalization (i18n)"</b>
+MessageService in service-lib shared by all service to handle backend internationalization.
+
+<b>"Error Handling"</b>
+ApplicationException -- Business Logic Error
+InvalidRequestException -- Invalid Request Error
+ResourceNotFoundException -- Resource Not Found Error
+SystemException -- Any System Exception, not longer be able to process further.
+ValidationException -- Bean validation failed.
+ServiceExceptionHandler -- @ControllerAdvice intercept all Exception and Convert to below format. 
+
+eg: 
+ResourceNotFoundException.java will return below error message:
+{
+    "status": {
+        "serverStatusCode": "404",
+        "severity": "Error",
+        "additionalStatus": [
+            {
+                "statusCode": null,
+                "serverStatusCode": "demo-project-err-1002",
+                "severity": "Error",
+                "statusDesc": "Project Not Found."
+            }
+        ]
+    }
+}
 </pre>
 
 ## Deployment
