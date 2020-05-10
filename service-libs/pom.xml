@@ -6,16 +6,21 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.demo.microservices</groupId>
 	<artifactId>service-libs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>service-libs</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Common Utility</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.locale>en_US</project.build.locale>
+		<version.lombok>1.18.8</version.lombok>
+		<version.commonsLang>3.10</version.commonsLang>
 	</properties>
 
 	<dependencies>
@@ -28,30 +33,40 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 			<scope>provided</scope>
 		</dependency>
-        
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>${version.lombok}</version>
+			<scope>provided</scope>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${version.commonsLang}</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.5.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -59,4 +74,70 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<!-- # set maven.version property -->
+					<execution>
+						<id>set-maven.version-property</id>
+						<goals>
+							<goal>maven-version</goal>
+						</goals>
+					</execution>
+					<!-- # set date.current property -->
+					<execution>
+						<id>set-date.current-property</id>
+						<goals>
+							<goal>timestamp-property</goal>
+						</goals>
+						<configuration>
+							<name>date.current</name>
+							<locale>${project.build.locale}</locale>
+							<pattern>yyyy-MM-dd'T'HH:mm:ssZ</pattern>
+						</configuration>
+					</execution>
+					<!-- # set date.current.simple property -->
+					<execution>
+						<id>set-date.current.simple-property</id>
+						<goals>
+							<goal>timestamp-property</goal>
+						</goals>
+						<configuration>
+							<name>date.current.simple</name>
+							<locale>${project.build.locale}</locale>
+							<pattern>yyyyMMddHHmmss</pattern>
+						</configuration>
+					</execution>
+					<!-- # set date.current.year property -->
+					<execution>
+						<id>set-date.current.year-property</id>
+						<goals>
+							<goal>timestamp-property</goal>
+						</goals>
+						<configuration>
+							<name>date.current.year</name>
+							<locale>${project.build.locale}</locale>
+							<pattern>yyyy</pattern>
+						</configuration>
+					</execution>
+					<!-- # set date.current.humanReadable property -->
+					<execution>
+						<id>set-date.current.humanReadable-property</id>
+						<goals>
+							<goal>timestamp-property</goal>
+						</goals>
+						<configuration>
+							<name>date.current.humanReadable</name>
+							<locale>${project.build.locale}</locale>
+							<pattern>yyyy MMMM d</pattern>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

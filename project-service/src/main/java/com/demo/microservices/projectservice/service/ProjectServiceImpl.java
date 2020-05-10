@@ -1,18 +1,26 @@
 package com.demo.microservices.projectservice.service;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.microservices.projectservice.model.Enums;
 import com.demo.microservices.projectservice.model.Enums.PStatus;
 import com.demo.microservices.projectservice.model.ProjectInfo;
 import com.demo.microservices.projectservice.repository.ProjectRepository;
+import com.demo.microservices.projectservice.util.ProjectConstants;
+import com.demo.microservices.servicelibs.exception.ResourceNotFoundException;
+import com.demo.microservices.servicelibs.service.MessageService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
 
-  @Autowired
-  ProjectRepository repository;
+  @NonNull
+  private ProjectRepository repository;
+
+  @NonNull
+  private MessageService messageServie;
 
   String userID = "1";// This should get from JWT token
 
@@ -28,7 +36,9 @@ public class ProjectServiceImpl implements ProjectService {
 
   @Override
   public ProjectInfo getProjectById(Integer id) {
-    return repository.findById(id).get();
+    String message = messageServie.getMessage(ProjectConstants.PROJECT_NOT_FOUND);
+    return repository.findById(id).orElseThrow(
+        () -> new ResourceNotFoundException(ProjectConstants.PROJECT_NOT_FOUND, message));
   }
 
   @Override
