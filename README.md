@@ -34,7 +34,7 @@ Build REST APIs using Microservice Archtecture. Desgin diagram as below:
 Using JWT token (included Expiration time and User role) to validate User access. First time when user trying to 
 login, redirect to Authentication Server.
 
-<b>"Authentication Server Desgin"</b>
+<b>"Authentication Server Design"</b>
 1) If user choose to login using username and password, then validate again User information stored in Database 
    along with User role. 
 2) If user choose to login using social login, redirect to Social Login page, if user grant access (email and 
@@ -52,6 +52,33 @@ service level.
 Each Service will fetch Public key from Auth Server and then validate incoming JWT token. If validation 
 fail, request get rejected. If success, resoure will be returned.
 
+<b>"Backend Internationalization (i18n)"</b>
+MessageService in service-lib shared by all service to handle backend internationalization.
+
+<b>"Error Handling"</b>
+ApplicationException -- Business Logic Error
+InvalidRequestException -- Invalid Request Error
+ResourceNotFoundException -- Resource Not Found Error
+SystemException -- Any System Exception, not longer be able to process further.
+ValidationException -- Bean validation failed.
+ServiceExceptionHandler -- @ControllerAdvice intercept all Exception and Convert to below format. 
+
+eg: 
+ResourceNotFoundException.java will return below error message:
+{
+    "status": {
+        "serverStatusCode": "404",
+        "severity": "Error",
+        "additionalStatus": [
+            {
+                "statusCode": null,
+                "serverStatusCode": "demo-project-err-1002",
+                "severity": "Error",
+                "statusDesc": "Project Not Found."
+            }
+        ]
+    }
+}
 </pre>
 
 ## Deployment
@@ -59,15 +86,17 @@ Each service contains a Dockerfile, and docker images are on docker hub:
 
 https://cloud.docker.com/repository/list
 
-We can be deployed to Cloud provide using Kubernetes or Cloud Provider have it's own tool for easy deployment. 
+It can be deployed to Cloud provide using Kubernetes or Cloud Provider have it's own tool for easy deployment. 
 For instance:
 AWS we can use ECS to deploy docker into EC2 instances and do auto-scaling. 
 
 ## TODO List
 <pre>
-1, Add Centralized logging (ELK Stack): Need check out options and add centralized logging mechanism.
+1, Implement CQRS & Event Sourcing using Kafka or Axon framework.
 
-2, Since Kubernete has it's component similar to Registry server and Config Server, need check out what's the best
+2, Add Centralized logging (ELK Stack): Need check out options and add centralized logging mechanism.
+
+3, Since Kubernete has it's component similar to Registry server and Config Server, need check out what's the best
    way to integrate Spring boot with Kubernete.
    
 3, Need check more on best way to handle failure and Delay how to tell Kubernete when to re-create a Pod.
