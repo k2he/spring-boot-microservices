@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
+/**
+ * @author kaihe
+ *
+ */
 
 @Configuration
 public class RestTemplateConfig {

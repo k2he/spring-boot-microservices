@@ -17,7 +17,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 /**
- * @author hekai27
+ * @author kaihe
  *
  */
 @MappedSuperclass

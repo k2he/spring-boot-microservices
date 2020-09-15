@@ -2,8 +2,6 @@ package com.demo.microservices.testservice.service;
 
 import java.sql.SQLException;
 import java.util.Date;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
@@ -16,15 +14,19 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+/**
+ * @author kaihe
+ *
+ */
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TestServiceImpl implements TestService {
 
   @NonNull
   private RestTemplate restTemplate;
-
-  private static final Logger logger = LoggerFactory.getLogger(TestServiceImpl.class);
 
   private static int RERTY_COUNTER = 0;
 
@@ -41,7 +43,7 @@ public class TestServiceImpl implements TestService {
    
     sb.append(message);
     sb.append(System.lineSeparator());
-    logger.info(message);
+    log.info(message);
 
     if (RERTY_COUNTER == 1) {
       throw new RuntimeException();
@@ -56,7 +58,7 @@ public class TestServiceImpl implements TestService {
   @Recover
   public String recover(Throwable t) {
     String error = "Total tried " + RERTY_COUNTER + " times --> recover() method called";
-    logger.info(error);
+    log.info(error);
     sb.append(error);
     sb.append(System.lineSeparator());
     RERTY_COUNTER = 0;// Reset Retry Counter, it will be used for testRetrySuccess()
@@ -76,7 +78,7 @@ public class TestServiceImpl implements TestService {
     String message = "testRetrySuccess() Retry count = " + RERTY_COUNTER + " on " + new Date();
     sb.append(message);
     sb.append(System.lineSeparator());
-    logger.info(message);
+    log.info(message);
 
     if (RERTY_COUNTER < 3) {
       throw new RuntimeException();
@@ -110,7 +112,7 @@ public class TestServiceImpl implements TestService {
     String text = "testCircuitBreaker() called";
     sb.append(text);
     sb.append(System.lineSeparator());
-    logger.info(text);
+    log.info(text);
     return getProjectJson("aaa");// Invalid project id
   }
 

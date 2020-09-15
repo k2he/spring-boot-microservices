@@ -3,6 +3,10 @@ package com.demo.microservices.authservice.security.oauth2.user;
 import java.util.Map;
 import com.demo.microservices.authservice.exception.OAuth2AuthenticationProcessingException;
 import com.demo.microservices.authservice.model.AuthProvider;
+/**
+ * @author kaihe
+ *
+ */
 
 public class OAuth2UserInfoFactory {
 

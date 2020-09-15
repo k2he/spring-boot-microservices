@@ -10,6 +10,11 @@ import com.demo.microservices.authservice.repository.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author kaihe
+ *
+ */
+
 @RequiredArgsConstructor
 @Component
 public class CustomUserDetailsService implements UserDetailsService {

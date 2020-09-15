@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 import com.demo.microservices.authservice.util.CookieUtils;
 import com.nimbusds.oauth2.sdk.util.StringUtils;
 import lombok.Getter;
+/**
+ * @author kaihe
+ *
+ */
 
 @Component
 public class HttpCookieOAuth2AuthorizationRequestRepository

@@ -12,12 +12,17 @@ import com.demo.microservices.servicelibs.service.MessageService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author kaihe
+ *
+ */
+
 @Service
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
 
   @NonNull
-  private ProjectRepository repository;
+  private ProjectRepository projectRepository;
 
   @NonNull
   private MessageService messageServie;
@@ -26,27 +31,26 @@ public class ProjectServiceImpl implements ProjectService {
 
   @Override
   public List<ProjectInfo> getAllProjects() {
-    return repository.findAllByStatusIdNotOrderByDueDateAsc(PStatus.DELETED.getValue());
+    return projectRepository.findAllByStatusIdNotOrderByDueDateAsc(PStatus.DELETED.getValue());
   }
 
   @Override
   public ProjectInfo createProject(ProjectInfo info) {
-    return repository.save(info);
+    return projectRepository.save(info);
   }
 
   @Override
   public ProjectInfo getProjectById(Integer id) {
     String message = messageServie.getMessage(ProjectConstants.PROJECT_NOT_FOUND);
-    return repository.findById(id).orElseThrow(
+    return projectRepository.findById(id).orElseThrow(
         () -> new ResourceNotFoundException(ProjectConstants.PROJECT_NOT_FOUND, message));
   }
 
   @Override
   public ProjectInfo updateProject(ProjectInfo info) {
-    ProjectInfo project = repository.findById(info.getProjectId()).get();
-    if (project == null) {
-      return null;
-    }
+    String message = messageServie.getMessage(ProjectConstants.PROJECT_NOT_FOUND);
+    ProjectInfo project = projectRepository.findById(info.getProjectId()).orElseThrow(
+        () -> new ResourceNotFoundException(ProjectConstants.PROJECT_NOT_FOUND, message));
 
     project.setProjectName(info.getProjectName());
     project.setProjectSummary(info.getProjectSummary());
@@ -54,15 +58,15 @@ public class ProjectServiceImpl implements ProjectService {
     project.setEstimatedCost(info.getEstimatedCost());
     project.setProjectStatus(info.getProjectStatus());
 
-    return repository.save(project);
+    return projectRepository.save(project);
   }
 
   @Override
   public void deleteProject(Integer id) {
-    ProjectInfo project = repository.findById(id).get();
+    ProjectInfo project = projectRepository.findById(id).get();
     if (project != null) {
       project.setStatusId(Enums.PStatus.DELETED.getValue());
-      repository.save(project);
+      projectRepository.save(project);
     }
   }
 

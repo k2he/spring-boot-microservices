@@ -10,12 +10,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @author kaihe
+ *
+ */
+
+@Generated
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -25,10 +32,13 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 
   @NonNull
   private Long id;
+  
   @NonNull
   private String username;
+  
   @NonNull
   private String name;
+  
   private String email;
 
   @JsonIgnore

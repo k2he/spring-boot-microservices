@@ -7,7 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@SpringBootApplication
+/**
+ * @author kaihe
+ *
+ */
+
+@SpringBootApplication(scanBasePackages = {"com.demo.microservices.contactservice", "com.demo.microservices.servicelibs"}) 
 @EnableEurekaClient
 @EnableCircuitBreaker // Enable circuit breakers
 public class ContactServiceApplication {

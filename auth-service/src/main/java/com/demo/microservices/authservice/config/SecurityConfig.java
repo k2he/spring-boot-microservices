@@ -1,6 +1,5 @@
 package com.demo.microservices.authservice.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,29 +19,36 @@ import com.demo.microservices.authservice.security.oauth2.CustomOAuth2UserServic
 import com.demo.microservices.authservice.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.demo.microservices.authservice.security.oauth2.OAuth2AuthenticationFailureHandler;
 import com.demo.microservices.authservice.security.oauth2.OAuth2AuthenticationSuccessHandler;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+/**
+ * @author kaihe
+ *
+ */
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
+  @NonNull
   private JwtAuthenticationEntryPoint authEntryPoint;
 
-  @Autowired
+  @NonNull
   private CustomUserDetailsService customUserDetailsService;
 
-  @Autowired
+  @NonNull
   private CustomOAuth2UserService customOAuth2UserService;
 
-  @Autowired
+  @NonNull
   private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
 
-  @Autowired
+  @NonNull
   private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
 
-  @Autowired
+  @NonNull
   private HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository;
 
 //  @Bean

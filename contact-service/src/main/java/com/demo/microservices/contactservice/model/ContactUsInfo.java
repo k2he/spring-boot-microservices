@@ -16,6 +16,10 @@ import com.demo.microservices.servicelibs.audit.UserDateAudit;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+/**
+ * @author kaihe
+ *
+ */
 
 @Entity
 @Table(name = "contact_us", catalog = "my_database")

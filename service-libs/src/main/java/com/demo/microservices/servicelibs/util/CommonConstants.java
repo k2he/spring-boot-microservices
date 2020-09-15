@@ -32,7 +32,7 @@ public class CommonConstants {
     public static final AdditionalStatus.Severity RESOURCE_NOT_FOUND_ERROR_SEVERITY = AdditionalStatus.Severity.ERROR;
     
     // Error codes
-    public static final String RESOURCE_NOT_FOUND_ERROR_ID = "mboa-common-err-0001";
+    public static final String RESOURCE_NOT_FOUND_ERROR_ID = "demo-common-err-0001";
     
     public static final String PROJECT_ID_VALIDATION_MESSAGE = "Project ID is invalid.";
 }

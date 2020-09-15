@@ -21,6 +21,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @author kaihe
+ *
+ */
+
 @Entity
 @Table(name = "projects", catalog = "my_database")
 @EntityListeners(AuditingEntityListener.class)

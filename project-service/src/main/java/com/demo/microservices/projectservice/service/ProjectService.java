@@ -2,6 +2,10 @@ package com.demo.microservices.projectservice.service;
 
 import java.util.List;
 import com.demo.microservices.projectservice.model.ProjectInfo;
+/**
+ * @author kaihe
+ *
+ */
 
 public interface ProjectService {
   List<ProjectInfo> getAllProjects();

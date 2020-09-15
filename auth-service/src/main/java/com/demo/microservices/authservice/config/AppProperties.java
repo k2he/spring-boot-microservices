@@ -4,6 +4,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author kaihe
+ *
+ */
 @ConfigurationProperties(prefix = "app")
 @Getter
 public class AppProperties {

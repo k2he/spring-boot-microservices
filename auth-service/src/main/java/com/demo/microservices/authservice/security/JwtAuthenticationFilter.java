@@ -20,6 +20,10 @@ import com.demo.microservices.authservice.model.User;
 import com.demo.microservices.authservice.model.UserPrincipal;
 import com.demo.microservices.servicelibs.security.JwtConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;
+/**
+ * @author kaihe
+ *
+ */
 
 public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 

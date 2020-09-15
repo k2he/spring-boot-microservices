@@ -4,6 +4,11 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @author kaihe
+ *
+ */
+
 @AllArgsConstructor
 @Setter
 public abstract class OAuth2UserInfo {

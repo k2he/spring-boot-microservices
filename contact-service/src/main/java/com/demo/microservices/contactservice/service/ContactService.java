@@ -3,14 +3,20 @@ package com.demo.microservices.contactservice.service;
 import java.util.List;
 import com.demo.microservices.contactservice.model.ContactUsInfo;
 
+/**
+ * @author kaihe
+ *
+ */
+
 public interface ContactService {
-  List<ContactUsInfo> getAllMessages();
+  
+  List<ContactUsInfo> getAllContacts();
 
-  ContactUsInfo createMessage(ContactUsInfo info);
+  ContactUsInfo createContact(ContactUsInfo contact);
 
-  ContactUsInfo getMessageById(Integer id);
+  ContactUsInfo getContactById(Integer id);
 
-  ContactUsInfo updateMessage(ContactUsInfo info);
+  ContactUsInfo updateContact(ContactUsInfo contact);
 
-  void deleteMessage(Integer id);
+  void deleteContact(Integer id);
 }

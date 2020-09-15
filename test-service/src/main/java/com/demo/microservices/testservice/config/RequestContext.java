@@ -2,6 +2,10 @@ package com.demo.microservices.testservice.config;
 
 import lombok.Getter;
 import lombok.Setter;
+/**
+ * @author kaihe
+ *
+ */
 
 public class RequestContext {
 

@@ -1,11 +1,9 @@
 package com.demo.microservices.gatewayservice.config;
 
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,6 +16,11 @@ import org.springframework.web.client.RestTemplate;
 import com.demo.microservices.gatewayservice.security.JwtAuthorizationFilter;
 import com.demo.microservices.servicelibs.security.JwtAuthenticationEntryPoint;
 import com.demo.microservices.servicelibs.security.JwtTokenValidator;
+
+/**
+ * @author kaihe
+ *
+ */
 
 @ComponentScan(basePackages = {"com.demo.microservices.servicelibs.security"})
 @Configuration

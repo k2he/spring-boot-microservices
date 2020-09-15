@@ -12,6 +12,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.demo.microservices.authservice.util.CookieUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+/**
+ * @author kaihe
+ *
+ */
 
 @Component
 @RequiredArgsConstructor

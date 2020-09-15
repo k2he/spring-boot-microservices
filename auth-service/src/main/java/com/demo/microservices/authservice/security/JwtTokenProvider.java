@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
-  private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
   @NonNull
   private AppProperties appProperties;

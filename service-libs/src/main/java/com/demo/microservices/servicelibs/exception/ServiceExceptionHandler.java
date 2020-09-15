@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.demo.microservices.servicelibs.util.CommonConstants;
 
 /*
- * @author hekai27
+ * @author kaihe
  * 
  * The Http Statuses to be used in response to external components, i.e. UI: SystemException (500,
  * "Internal Server Error") ApplicationException (400, "Bad Request") --> Business Exception, such

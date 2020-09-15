@@ -1,6 +1,5 @@
 package com.demo.microservices.contactservice.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,14 +15,21 @@ import org.springframework.web.client.RestTemplate;
 import com.demo.microservices.contactservice.security.JwtAuthorizationFilter;
 import com.demo.microservices.servicelibs.security.JwtAuthenticationEntryPoint;
 import com.demo.microservices.servicelibs.security.JwtTokenValidator;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-@ComponentScan(basePackages = {"com.demo.microservices.servicelibs.security"})
+/**
+ * @author kaihe
+ *
+ */
+
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
+  @NonNull
   RestTemplate restTemplate;
 
   @Bean

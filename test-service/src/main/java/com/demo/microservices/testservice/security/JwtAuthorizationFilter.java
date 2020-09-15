@@ -17,7 +17,12 @@ import com.demo.microservices.servicelibs.security.JwtConstants;
 import com.demo.microservices.servicelibs.security.JwtTokenValidator;
 import com.demo.microservices.servicelibs.security.user.AppUserPrincipal;
 import com.demo.microservices.testservice.config.RequestContext;
-
+import lombok.extern.slf4j.Slf4j;
+/**
+ * @author kaihe
+ *
+ */
+@Slf4j
 public class JwtAuthorizationFilter extends GenericFilterBean {
 
   private JwtTokenValidator jwtTokenProvider;
@@ -45,7 +50,7 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
         RequestContext.getContext().setToken(token);
       }
     } catch (Exception ex) {
-      logger.error("Could not set user authentication in security context", ex);
+      log.error("Could not set user authentication in security context", ex);
     }
 
     filterChain.doFilter(request, response);

@@ -2,8 +2,6 @@ package com.demo.microservices.projectservice.controller;
 
 import java.util.List;
 import javax.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +16,18 @@ import com.demo.microservices.projectservice.model.ProjectInfo;
 import com.demo.microservices.projectservice.service.ProjectService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author kaihe
+ *
+ */
+
+@Slf4j
 @RestController
 @RequestMapping("/projects")
 @RequiredArgsConstructor
 public class ProjectController {
-  private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
   @NonNull
   ProjectService projectService;

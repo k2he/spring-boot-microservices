@@ -1,5 +1,10 @@
 package com.demo.microservices.projectservice.util;
 
+/**
+ * @author kaihe
+ *
+ */
+
 public class ProjectConstants {
   
   // Default Error codes

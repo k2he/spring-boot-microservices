@@ -25,6 +25,11 @@ import com.demo.microservices.servicelibs.util.RandomStringGenerator;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author kaihe
+ *
+ */
+
 @Service
 @RequiredArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {

@@ -14,12 +14,19 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import com.demo.microservices.servicelibs.audit.UserDateAudit;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @author kaihe
+ *
+ */
+
+@Generated
 @Entity
 @Table(name = "app_user", catalog = "my_database")
 @Getter

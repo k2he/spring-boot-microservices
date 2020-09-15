@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 /*
-* @author hekai27
+* @author kaihe
 * 
  * This class represents response returned when 
  * restful service provided by this component is called.

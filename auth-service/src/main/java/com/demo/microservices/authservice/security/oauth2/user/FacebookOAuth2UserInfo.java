@@ -1,6 +1,10 @@
 package com.demo.microservices.authservice.security.oauth2.user;
 
 import java.util.Map;
+/**
+ * @author kaihe
+ *
+ */
 
 public class FacebookOAuth2UserInfo extends OAuth2UserInfo {
 

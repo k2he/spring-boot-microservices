@@ -8,6 +8,10 @@ import com.demo.microservices.testservice.model.TestResult;
 import com.demo.microservices.testservice.service.TestService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+/**
+ * @author kaihe
+ *
+ */
 
 @RestController
 @RequestMapping("/tests")

@@ -5,19 +5,21 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
 import javax.annotation.PostConstruct;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+/**
+ * @author kaihe
+ *
+ */
 
+@Slf4j
 @Component
 @Getter
 @Setter
 public class RSAKeys {
-
-  private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   private PrivateKey privateKey;
   private PublicKey publicKey;
@@ -37,7 +39,7 @@ public class RSAKeys {
       publicKey = cert.getPublicKey();
 
     } catch (Exception e) {
-      logger.error("Error getting private and public keys: " + e);
+      log.error("Error getting private and public keys: " + e);
     }
   }
 }

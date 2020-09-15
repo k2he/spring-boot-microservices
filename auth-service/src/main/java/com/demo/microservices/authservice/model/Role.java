@@ -10,9 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import com.demo.microservices.servicelibs.audit.UserDateAudit;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author kaihe
+ *
+ */
+
+@Generated
 @Entity
 @Table(name = "app_role")
 @Getter
