@@ -30,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @NonNull
-  RestTemplate restTemplate;
+  private RestTemplate restTemplate;
 
   @Bean
   public JwtAuthenticationEntryPoint authEntryPoint() {

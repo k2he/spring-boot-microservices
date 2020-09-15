@@ -18,7 +18,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class ProjectServiceApplication {
 
   @PostConstruct
-  void init() {
+  public void init() {
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
   }
 

@@ -1,16 +1,14 @@
 package com.demo.microservices.testservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 /**
  * @author kaihe
  *
  */
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
+@Builder
 public class TestResult {
   
   private String result;

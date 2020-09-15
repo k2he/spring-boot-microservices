@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
   @NonNull
-  HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
+  private HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
 
   @Override
   public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,

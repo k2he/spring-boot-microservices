@@ -38,7 +38,6 @@ public class TestServiceImpl implements TestService {
   public String testRetryFailed() throws SQLException, RuntimeException {
     RERTY_COUNTER++;
     
-    
     String message = "testRetryFailed() Retry count = " + RERTY_COUNTER + " at " + new Date();
    
     sb.append(message);

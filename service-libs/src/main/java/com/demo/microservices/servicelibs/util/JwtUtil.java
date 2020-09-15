@@ -4,13 +4,11 @@ import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.demo.microservices.servicelibs.security.JwtPublicKey;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class JwtUtil {
-
-  private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
   public static PublicKey convertFrom(JwtPublicKey key) {
     try {
@@ -22,7 +20,7 @@ public class JwtUtil {
       PublicKey pubKey = kf.generatePublic(spec);
       return pubKey;
     } catch (Exception e) {
-      logger.error("Error on converting public key:" + e);
+      log.error("Error on converting public key:" + e);
       return null;
     }
   }

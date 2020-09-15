@@ -27,8 +27,6 @@ public class ProjectServiceImpl implements ProjectService {
   @NonNull
   private MessageService messageServie;
 
-  String userID = "1";// This should get from JWT token
-
   @Override
   public List<ProjectInfo> getAllProjects() {
     return projectRepository.findAllByStatusIdNotOrderByDueDateAsc(PStatus.DELETED.getValue());

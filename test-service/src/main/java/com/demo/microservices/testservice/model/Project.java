@@ -1,17 +1,16 @@
 package com.demo.microservices.testservice.model;
 
 import java.math.BigDecimal;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 /**
  * @author kaihe
  *
  */
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@Builder
 public class Project {
   
   private Integer projectId;

@@ -25,6 +25,7 @@ public class HttpCookieOAuth2AuthorizationRequestRepository
   // is a temp walk around. For some reason microservice doesn't work well
   // with Cookies
   private static String OAUTH2_AUTHORIZATION_REQUEST;
+  
   @Getter
   private static String REDIRECT_URI_PARAM;
 

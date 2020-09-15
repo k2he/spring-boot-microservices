@@ -69,9 +69,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
       user = userOptional.get();
       if (!user.getProvider().equals(
           AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
-        throw new OAuth2AuthenticationProcessingException(
-            "Looks like you're signed up with " + user.getProvider() + " account. Please use your "
-                + user.getProvider() + " account to login.");
+        String errorMsg = "Looks like you're signed up with " + user.getProvider() + " account. Please use your "
+                + user.getProvider() + " account to login.";
+        throw new OAuth2AuthenticationProcessingException(errorMsg);
       }
       updateExistingUser(user, oAuth2UserInfo);
     } else {// User not found, create a new user
@@ -82,19 +82,16 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
   }
 
   private User registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-    User user = new User();
-
-    // Since Username is required for UserPrincipl, we generate a random
-    // one.
-    user.setUsername(RandomStringGenerator.getAlphaNumericString(25));
-    user.setEmail(oAuth2UserInfo.getEmail());
-    user.setProvider(
-        AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
-    user.setProviderId(oAuth2UserInfo.getId());
-    user.setFirstName(oAuth2UserInfo.getFirstName());
-    user.setLastName(oAuth2UserInfo.getLastName());
-    user.setImageUrl(oAuth2UserInfo.getImageUrl());
-    user.setActive(true);
+    User user = User.builder()
+        .username(RandomStringGenerator.getAlphaNumericString(25)) //Since Username is required for UserPrincipl, we generate a random one.
+        .email(oAuth2UserInfo.getEmail())
+        .provider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))
+        .providerId(oAuth2UserInfo.getId())
+        .firstName(oAuth2UserInfo.getFirstName())
+        .lastName(oAuth2UserInfo.getLastName())
+        .imageUrl(oAuth2UserInfo.getImageUrl())
+        .active(true)
+        .build();
 
     // For demo purpose, set user to have admin role, so he/she can view all
     // pages.
@@ -109,7 +106,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     existingUser.setFirstName(oAuth2UserInfo.getFirstName());
     existingUser.setLastName(oAuth2UserInfo.getLastName());
     existingUser.setImageUrl(oAuth2UserInfo.getImageUrl());
-
     return userRepository.save(existingUser);
   }
 }

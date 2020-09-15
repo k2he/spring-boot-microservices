@@ -8,6 +8,7 @@ import com.demo.microservices.projectservice.model.ProjectInfo;
  */
 
 public interface ProjectService {
+  
   List<ProjectInfo> getAllProjects();
 
   ProjectInfo createProject(ProjectInfo info);

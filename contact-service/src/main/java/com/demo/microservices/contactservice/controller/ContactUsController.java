@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class ContactUsController {
 
   @NonNull
-  ContactService contactService;
+  private ContactService contactService;
 
   // Get All contact note messages
   @GetMapping()

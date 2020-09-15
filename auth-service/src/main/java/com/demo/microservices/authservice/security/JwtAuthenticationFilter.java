@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-  JwtTokenProvider jwtTokenProvider;
+  private JwtTokenProvider jwtTokenProvider;
 
   public JwtAuthenticationFilter(String url, AuthenticationManager authenticationManager) {
     super(new AntPathRequestMatcher(url));

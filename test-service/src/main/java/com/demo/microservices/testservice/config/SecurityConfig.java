@@ -1,6 +1,5 @@
 package com.demo.microservices.testservice.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,18 +14,21 @@ import org.springframework.web.client.RestTemplate;
 import com.demo.microservices.servicelibs.security.JwtAuthenticationEntryPoint;
 import com.demo.microservices.servicelibs.security.JwtTokenValidator;
 import com.demo.microservices.testservice.security.JwtAuthorizationFilter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 /**
  * @author kaihe
  *
  */
  
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  RestTemplate restTemplate;
+  @NonNull
+  private RestTemplate restTemplate;
 
   @Bean
   public JwtAuthenticationEntryPoint authEntryPoint() {

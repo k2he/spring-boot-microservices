@@ -23,6 +23,6 @@ public class AuthController {
   @GetMapping("/public-key")
   public JwtPublicKey getPublicKey() {
     String publicKeyStr = Base64.getEncoder().encodeToString(jwtKeys.getPublicKey().getEncoded());
-    return new JwtPublicKey(publicKeyStr);
+    return JwtPublicKey.builder().base64Key(publicKeyStr).build();
   }
 }

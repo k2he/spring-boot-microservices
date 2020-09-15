@@ -25,20 +25,20 @@ public class TestController {
   @GetMapping("/retry-fail")
   public TestResult retryFailed() throws Exception {
     String result = testService.testRetryFailed();
-    return new TestResult(result);
+    return TestResult.builder().result(result).build();
   }
 
   // Test retry fail test case
   @GetMapping("/retry-success")
   public TestResult retrySuccess(@RequestHeader("Authorization") String token) {
     String result = testService.testRetrySuccess(token);
-    return new TestResult(result);
+    return TestResult.builder().result(result).build();
   }
 
   // Test retry fail test case
   @GetMapping("/circuit-breaker")
   public TestResult circuitBreaker() {
     String result = testService.testCircuitBreaker();
-    return new TestResult(result);
+    return TestResult.builder().result(result).build();
   }
 }
