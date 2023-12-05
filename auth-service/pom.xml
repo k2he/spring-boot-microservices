@@ -20,7 +20,7 @@
 		
 		<serviceLib.version>0.0.1-SNAPSHOT</serviceLib.version>
 		<jsonWebToken.version>0.5.1</jsonWebToken.version>
-		<logbackCore.version>1.2.3</logbackCore.version>
+		<logbackCore.version>1.2.13</logbackCore.version>
 		<logbackEncoder.version>5.3</logbackEncoder.version>
 	</properties>
 
